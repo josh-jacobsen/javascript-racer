@@ -3,30 +3,27 @@ document.addEventListener("keyup", keyUsed);
 
 function keyUsed(event) { 
   if (event.which === 76){
-    console.log("Key L was pressed");
     findActive(cells1);
   } 
   else if (event.which === 68){
-    console.log("Key D was pressed");
+    findActive(cells2);
   }
 }
 
 var player1 = document.getElementById("player1_strip");
-
 var player2 = document.getElementById("player2_strip");
 
 var cells1 = player1.getElementsByTagName("td");
-
+var cells2 = player2.getElementsByTagName("td");
 
 function findActive(cells){
   for (i = 0; i < cells.length; i++){
     if (cells[i].className === "active"){
-      cells[i].className = "test";
+      cells[i].className = "";
       cells[i].nextElementSibling.className = "active";
       break;
     }
   }
-
 }
 
 
