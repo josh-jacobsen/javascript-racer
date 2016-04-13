@@ -1,32 +1,28 @@
-.racer_table td {
-  background-color: white;
-  height: 20px;
-  width: 20px;
-  border: 1px solid black;
-}
 
-.racer_table td.active {
-  background-color: black;
-}
 
-.racer_table td.test {
-  background-color: orange;
-}
-
-.hidden {
-  display: none;
-}
 
 td {
   border: 1px solid red;
   height: 20px;
-  width: 10px;
+  width: 20px;
+}
+
+table {
+  border: 1px solid blue;
 }
 
 .border {
-  margin-top: 20px;
   border: 1px solid green;
-  width: 200px;
-  height: 200px;
-  background-color: yellow;
 }
+
+.active {
+  background-color: black;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
