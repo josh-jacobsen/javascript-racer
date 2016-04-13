@@ -87,9 +87,13 @@ var players = 2;
 
 //var track = 5;
 
+var div = document.getElementById("centered-content");
+
 var tbl = document.createElement("table");
 tbl.setAttribute("id", "myTable");
-document.body.appendChild(tbl);
+//document.body.appendChild(tbl);
+
+div.appendChild(tbl);
 
 for (i = 0; i < players; i++){
   var row = document.createElement("tr");
@@ -99,6 +103,9 @@ for (i = 0; i < players; i++){
     row.appendChild(cell);
   }
 }
+
+
+
 
 for (i = 0; i < players; i++){
   tbl.rows[i].setAttribute("id", "player" + [i] + "track");
