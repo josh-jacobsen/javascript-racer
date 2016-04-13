@@ -12,3 +12,8 @@
 .racer_table td.test {
   background-color: orange;
 }
+
+.hidden {
+  display: none;
+}
+

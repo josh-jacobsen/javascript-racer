@@ -1,3 +1,9 @@
+var gameOver = false;
+
+
+var paras = document.getElementsByTagName("p");
+var para1 = paras[0];
+var para2 = paras[1];
 
 document.addEventListener("keyup", keyUsed);
 
@@ -18,10 +24,20 @@ var cells2 = player2.getElementsByTagName("td");
 
 function findActive(cells){
   for (i = 0; i < cells.length; i++){
-    if (cells[i].className === "active"){
+    if (cells[i].className === "active" && cells[i].nextElementSibling !== null && gameOver == false){
       cells[i].className = "";
       cells[i].nextElementSibling.className = "active";
       break;
+    }
+    else if (cells[i].nextElementSibling === null && gameOver == false){
+      if (event.which === 76){
+        para1.className = "";
+        gameOver = true;
+      }
+      else if (event.which === 68){
+        para2.className = "";
+        gameOver = true;
+      }
     }
   }
 }
