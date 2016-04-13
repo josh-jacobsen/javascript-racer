@@ -1,9 +1,13 @@
 var gameOver = false;
 
-
+var box = document.getElementById("winner-box");
 var paras = document.getElementsByTagName("p");
 var para1 = paras[0];
 var para2 = paras[1];
+var player1Win = "Player 1 Wins!";
+var player2Win = "Player 2 Wins!";
+
+
 
 document.addEventListener("keyup", keyUsed);
 
@@ -31,76 +35,22 @@ function findActive(cells){
     }
     else if (cells[i].nextElementSibling === null && gameOver == false){
       if (event.which === 76){
-        para1.className = "";
+        box.className = "border";
+        var para = document.createElement("p");
+        var content = document.createTextNode("Player 1 Wins!!")
+        para.appendChild(content);
+        box.appendChild(para);
         gameOver = true;
       }
       else if (event.which === 68){
-        para2.className = "";
+        box.className = "border";
+        var para = document.createElement("p");
+        var content = document.createTextNode("Player 2 Wins!!")
+        para.appendChild(content);
+        box.appendChild(para);
         gameOver = true;
       }
     }
   }
 }
 
-
-
-// var active = document.getElementsByClassName("active");
-
-// 
-
-// var cells = document.getElementById("player1_strip").getElementsByTagName("td");
-
-// console.log(cells);
-
-// for (i = 0; i < cells.length; i++){
-//   cells[i].addEventListener("click", updatePosition);
-//   cells[i].addEventListener("dblclick", uncheck);
-// }
-
-
-// function updatePosition(){
-//   this.className = "active";
-// }
-
-// function uncheck(){
-//   this.className = "";
-// }
-
-// document.addEventListener("keydown", itemKeyPress);
-
-// function itemKeyPress(event){
-//   if (event.which === 38){
-//     console.log("That was the up key");
-//   }
-// }
-
-// function updatePlayerPosition(activePlayer) {
-//   for (i = 0; i < cells.length; i++){
-//     if (cells[i].className === "active"){
-//       console.log("active cell is number: ", cells[i]);
-//       cells[i].className = "";
-//       cells[i].nextElementSibling.className = "active";
-//       break;
-//     }
-//   }
-// }
-
-// updatePlayerPosition(player1);
-
-//
-// document.onkeydown = function(e) {
-//     switch (e.keyCode) {
-//         case 37:
-//             alert('left');
-//             break;
-//         case 38:
-//             alert('up');
-//             break;
-//         case 39:
-//             alert('right');
-//             break;
-//         case 40:
-//             alert('down');
-//             break;
-//     }
-// };
