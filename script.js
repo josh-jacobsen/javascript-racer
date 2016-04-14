@@ -127,6 +127,8 @@ function findActive(cells){
     else if (cells[i].nextElementSibling === null && gameOver == false){
       if (event.which === 76){
         alert("player 1 wins!")
+        var car_noise = document.getElementById("car_noise");
+        car_noise.play();
         gameOver = true;
         var rematch = confirm("Rematch?");
         if (rematch) {
