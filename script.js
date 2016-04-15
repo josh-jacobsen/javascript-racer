@@ -1,8 +1,40 @@
+// START OF 2100 15/4/16 //
+
 // Declare Variables //
 
 var activeGame = false;
 
 // Functions // 
+
+function findActive(player){
+    var check = Boolean(player)
+    // if (check !== true) {
+    //     console.log("value is false");
+    // }
+    if (check === true) {
+        var cells = document.getElementById(player).getElementsByTagName("td");
+        for (i = 0; i < cells.length; i++){
+            if (cells[i].className === "active" && cells[i].nextElementSibling !== null && activeGame === true){
+                console.log("Option 1");
+                cells[i].className = "";
+                cells[i].nextElementSibling.className = "active";
+                break;
+            }
+            else if (cells[i].className === "active" && cells[i].nextElementSibling === null && activeGame === true) {
+                activeGame = false;
+                console.log("option 2");
+                alert("game over");  
+                break;      
+            }
+            else {
+                //
+            }
+        }
+    }
+    else {
+        console.log("dammit");
+    }
+}
 
 function assignCellstoPlayers(player){
 }
@@ -18,126 +50,218 @@ function lengthOfTrack() {
 }
 
 function clear_all(){
-    // if (activeGame === true){
-    //     var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
-    //     if (end){
     document.getElementById("centered-content").innerHTML = "";
-//    activeGame = false;
-//    start_game();
 }
-//         else {
-//                 //
-//         }
-//     }
-//     else {
-//         //
-//     }
+
+// function restart() {
+//     activeGame = false;
+//      clear_all();
+//      start_game();
 // }
-function restart() {
-    if (activeGame === true){
-         var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
-         if (end){
+
+//     console.log("restart called");
+//     activeGame = false;
+//     clear_all();
+//     start_game();
+//     // if (activeGame === true){
+//     //      var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
+//     //      if (end){
+//     //         clear_all();
+//     //         activeGame = false;
+//             // start_game();
+//     //     }
+//     //     else {
+//     //             //
+//     //     }
+//     // }
+    
+//     // else {
+//     //     //
+//     // }
+// }
+
+function keyUsed(event) {
+    console.log(event.which);
+    // key a 
+    if (event.which === 65){
+        findActive("stripPlayer:1");
+    }
+    // key s
+    else if (event.which === 83) {
+        findActive("stripPlayer:2")
+    }
+    // key d
+    else if (event.which === 68) {
+        findActive("stripPlayer:3")
+    }
+    // key f
+    else if (event.which === 70) {
+        findActive("stripPlayer:4")
+    }
+}     
+
+
+
+function boardSetup() {
+
+    var game_players = numberOfPlayers();
+    var track = lengthOfTrack();
+
+    var num_players = [];
+    for (i = 0; i < game_players; i++){
+        var player_number = [i + 1];
+        num_players.push(player_number);
+    }
+
+    var playerIds = [];
+    for (i = 0; i < game_players; i++){
+        var player = [i + 1];
+        playerIds.push(player);
+    }
+
+    var trackLength = [];
+    for (i = 0; i < track; i++){
+      var cell = [i + 1];
+      trackLength.push(cell);
+    }
+
+    var cellIds = [];
+    for (i = 0; i < track; i++){
+      var cell = [i + 1];
+      cellIds.push(cell);
+    }    
+
+    // get div to insert table
+    var container = document.getElementById("centered-content");
+    // create table element
+    var table = document.createElement("table");
+    // loop num_players to create rows
+    for (i = 0; i < num_players.length; i++){
+        var row = document.createElement("tr");
+        // append row to table
+        table.appendChild(row);
+        // loop rows
+        for (j = 0; j < trackLength.length; j++){
+            var cell = document.createElement("td");
+            row.appendChild(cell);
+        }
+    }
+    container.appendChild(table);
+
+    // Assign IDs to rows and cells //
+    var rows = document.getElementsByTagName("tr");
+    // traverse rows //
+    for (i = 0; i < game_players; i++) {
+        rowId = "stripPlayer:" + playerIds[i];
+        rows[i].id = rowId;
+        var cells = rows[i].getElementsByTagName("td");
+        // traverse columns // 
+        for (j = 0; j < cells.length; j++) {
+            cells[j].id = "player:" + playerIds[i] + " " + "cell:" + cellIds[j];
+        }
+    }
+
+    for (i = 0; i < game_players; i++){
+        var cells = rows[i].getElementsByTagName("td");
+        for (j = 0; j < cells.length; j++) {
+            cells[0].className = "active";
+        }
+    }
+
+}
+
+function start_game() {
+
+    if (activeGame === false){
+        activeGame = true;
+
+        clear_all();
+
+        boardSetup();
+
+        document.addEventListener("keyup", keyUsed);
+
+    }
+
+    else {
+        var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
+        if (end){
             clear_all();
             activeGame = false;
             start_game();
         }
-        else {
-                //
-        }
     }
-    
-    else {
-        //
-    }
+        
 }
 
+// START OF 2100 15/4/16 //
 
-var game_players = numberOfPlayers();
-var track = lengthOfTrack();
 
-var num_players = [];
-for (i = 0; i < game_players; i++){
-    var player_number = [i + 1];
-    num_players.push(player_number);
-}
-
-var playerIds = [];
-for (i = 0; i < game_players; i++){
-    var player = [i + 1];
-    playerIds.push(player);
-}
-
-var trackLength = [];
-for (i = 0; i < track; i++){
-  var cell = [i + 1];
-  trackLength.push(cell);
-}
-
-var cellIds = [];
-for (i = 0; i < track; i++){
-  var cell = [i + 1];
-  cellIds.push(cell);
-}    
-
-// set up playing board 
-
-// get div to insert table
-var container = document.getElementById("centered-content");
-// create table element
-var table = document.createElement("table");
-// loop num_players to create rows
-for (i = 0; i < num_players.length; i++){
-    var row = document.createElement("tr");
-    // append row to table
-    table.appendChild(row);
-    // loop rows
-    for (j = 0; j < trackLength.length; j++){
-        var cell = document.createElement("td");
-        row.appendChild(cell);
-    }
-}
-container.appendChild(table);
-
-// Assign IDs to rows and cells //
-var rows = document.getElementsByTagName("tr");
-// traverse rows //
-for (i = 0; i < game_players; i++) {
-    rowId = "stripPlayer:" + playerIds[i];
-    rows[i].id = rowId;
-    var cells = rows[i].getElementsByTagName("td");
-    // traverse columns // 
-    for (j = 0; j < cells.length; j++) {
-        cells[j].id = "player:" + playerIds[i] + " " + "cell:" + cellIds[j];
-    }
-}
-
-for (i = 0; i < game_players; i++){
-    var cells = rows[i].getElementsByTagName("td");
-    for (j = 0; j < cells.length; j++) {
-        cells[0].className = "active";
-
-    }
-}
+// ENO OF FIND ACTIVE FUNCTION // 
 
 
 
 
-document.addEventListener("keyup", keyUsed);
 
-function keyUsed(event) { 
-    if (event.which === 76){
-        console.log("L key pressed");
-        var cells = document.getElementById("stripPlayer:1").getElementsByTagName("td");
-        for (i = 0; i < cells.length; i++){
-            if (cells[i].className === "active" && cells[i].nextElementSibling !== null && activeGame !== false){
-                cells[i].className = "";
-                cells[i].nextElementSibling.className = "active";
-                break;
-            }
-        }
-    }
-}
+
+
+
+
+
+    //     console.log("A key pressed");
+    //     var cells = document.getElementById("stripPlayer:1").getElementsByTagName("td");
+    //     for (i = 0; i < cells.length; i++){
+    //         if (cells[i].className === "active" && cells[i].nextElementSibling !== null && activeGame !== false){
+    //             cells[i].className = "";
+    //             cells[i].nextElementSibling.className = "active";
+    //             break;
+    //         }
+    //     }
+    // }
+
  
+
+
+// document.addEventListener("keyup", keyUsed);
+
+// function keyUsed(event) { 
+//   if (event.which === 76){
+//     findActive(cells1);
+//   } 
+//   else if (event.which === 68){
+//     findActive(cells2);
+//   }
+// }
+
+//function findActive(cells){
+//   for (i = 0; i < cells.length; i++){
+//     if (cells[i].className === "active" && cells[i].nextElementSibling !== null && gameOver == false){
+//       cells[i].className = "";
+//       cells[i].nextElementSibling.className = "active";
+//       break;
+//     }
+//     else if (cells[i].nextElementSibling === null && gameOver == false){
+//       if (event.which === 76){
+//         car_noise.play();
+//         alert("player 1 wins!")
+
+//         gameOver = true;
+//         var rematch = confirm("Rematch?");
+//         if (rematch) {
+//           window.location = "file:///home/dev/javascript-racer/index.html";
+//         } 
+//       }
+//       else if (event.which === 68){
+//         alert("player 2 wins!")
+//         gameOver = true;
+//                 var rematch = confirm("Rematch?");
+//         if (rematch) {
+//           window.location = "file:///home/dev/javascript-racer/index.html";
+//         } 
+//       }
+//     }
+//   }
+// }
 
 
 
@@ -163,7 +287,6 @@ function keyUsed(event) {
 
 //var cells = document.getElementsByTagName("td");
 
-activeGame = true;
 
 
 // function findActive(player) {
