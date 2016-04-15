@@ -8,9 +8,6 @@ var activeGame = false;
 
 function findActive(player){
     var check = Boolean(player)
-    // if (check !== true) {
-    //     console.log("value is false");
-    // }
     if (check === true) {
         var cells = document.getElementById(player).getElementsByTagName("td");
         for (i = 0; i < cells.length; i++){
@@ -24,6 +21,7 @@ function findActive(player){
                 activeGame = false;
                 console.log("option 2");
                 alert("game over");  
+                start_game();
                 break;      
             }
             else {
@@ -53,32 +51,16 @@ function clear_all(){
     document.getElementById("centered-content").innerHTML = "";
 }
 
-// function restart() {
-//     activeGame = false;
-//      clear_all();
-//      start_game();
-// }
-
-//     console.log("restart called");
-//     activeGame = false;
-//     clear_all();
-//     start_game();
-//     // if (activeGame === true){
-//     //      var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
-//     //      if (end){
-//     //         clear_all();
-//     //         activeGame = false;
-//             // start_game();
-//     //     }
-//     //     else {
-//     //             //
-//     //     }
-//     // }
-    
-//     // else {
-//     //     //
-//     // }
-// }
+function restart() {
+    if (activeGame === true){
+        var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
+        if (end === true){
+            activeGame = false;
+            clear_all();
+            start_game();
+        }
+    }
+}
 
 function keyUsed(event) {
     console.log(event.which);
@@ -184,14 +166,8 @@ function start_game() {
     }
 
     else {
-        var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
-        if (end){
-            clear_all();
-            activeGame = false;
-            start_game();
-        }
-    }
-        
+        //
+    }    
 }
 
 // START OF 2100 15/4/16 //
