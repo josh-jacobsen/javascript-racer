@@ -1,20 +1,21 @@
 
+.active {
+  background-color: orange;
+}
 
 
 td {
   height: 40px;
   width: 40px;
-  background-color: black;
+  //background-color: black;
 }
 
 table {
   margin: 0 auto;
+  border: 1px solid red;
 }
 
-.border {
-}
-
-#player0track .active {
+.#player0track .active {
   background-image: url("../images/yellow_car.jpeg");
   background-size: 40px 40px;
   background-repeat: no-repeat;
@@ -29,6 +30,7 @@ table {
 
 body {
     margin : 0;
+    //background-color: #1E90FF;
     background: #ccc;
 
 }
@@ -38,8 +40,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-}
 }
 
 #inner-container {
@@ -67,12 +67,17 @@ body {
     align-items: center;// Important
     justify-content: center; // Important
     //border: 1px solid white;
-    width: 5%;
+    //width: 50%;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 
-#start_button {
-  height: 50px;
-  margin-top: 20px;
-  margin-bottom: 100px;
+#start {
+  height: 35px;
+  // margin-top: 20px;
+  // margin-bottom: 100px;
+}
+
+#clear_all {
+  height: 35px;
 }
