@@ -5,6 +5,7 @@
 var activeGame = false;
 var finishedGame = false;
 var missileImpact = document.getElementById("missile_impact");
+var missileVideo = document.getElementById("missile_video");
 
 // Functions // 
 
@@ -170,6 +171,9 @@ function start_game() {
         boardSetup();
         var ship = document.getElementById("ship");
         ship.style.backgroundImage="url('images/ship.jpg')";
+
+        var sub = document.getElementById("sub");
+        sub.style.backgroundImage="url('images/submarine.jpg')";
 
         document.addEventListener("keyup", keyUsed);
 

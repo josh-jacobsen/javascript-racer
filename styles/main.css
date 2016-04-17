@@ -13,7 +13,7 @@
 #play-area {
   padding-top: 50px;
   padding-bottom: 50px;
-  width: 80%;
+  max-width: 960px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -41,7 +41,7 @@
   min-height: 200px;
   min-width: 200px;
   //background-image: url("../images/impact.gif");
-  background-image: url("../images/submarine.jpg");
+  //background-image: url("../images/submarine.jpg");
   background-size: 200px 200px; 
 }
 
@@ -49,7 +49,7 @@
   min-height: 200px;
   min-width: 200px;
   //background-image: url("../images/impact.gif");
-  background-image: url("../images/ship.jpg");
+  //background-image: url("../images/ship.jpg");
   background-size: 200px 200px; 
 }
 
