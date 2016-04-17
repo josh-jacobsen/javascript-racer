@@ -16,6 +16,15 @@ function callAlert() {
     start_game();
     }
 
+function clearTorpedoes(track) {
+    var torpedoes = document.getElementById(track).getElementsByTagName("td");
+    for (i = 0; i < torpedoes.length; i++) {
+        torpedoes[i].className = "";
+    }
+
+
+}
+
 function findActive(player){
     var check = Boolean(player)
     if (check === true) {
@@ -29,6 +38,8 @@ function findActive(player){
             else if (cells[i].className === "active" && cells[i].nextElementSibling === null && activeGame === true) {
                 var ship = document.getElementById("ship");
                 ship.style.backgroundImage="url('images/impact.gif')";
+                clearTorpedoes(player);
+                //document.getElementsByClassName("active").className = "";
                 missileImpact.play();
                 activeGame = false;
                 finishedGame = true;
@@ -56,19 +67,23 @@ function lengthOfTrack() {
 
 function clear_all(){
     document.getElementById("centered-content").innerHTML = "";
+    document.getElementById("sub").style.backgroundImage="url('')";
+    document.getElementById("ship").style.backgroundImage ="url('')";
 }
 
 function restart() {
     if (activeGame === true){
         var end = confirm("Winners never quit and quitters never win. Are you sure you want to leave the game?")
         if (end === true){
+  
             activeGame = false;
             clear_all();
             start_game();
         }
     }
    else {
-    start_game();
+        clear_all();
+        start_game();
    }
 }
 
