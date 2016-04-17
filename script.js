@@ -38,12 +38,12 @@ function assignCellstoPlayers(player){
 }
 
 function numberOfPlayers(){
-    var game_players = prompt("how many players are there? (Enter a number between 2 and 4", 2);
+    var game_players = prompt("Captain, how many torperdos do you want to fire? (Enter a number between 2 and 4", 2);
     return game_players;
 }
 
 function lengthOfTrack() {
-    var track = prompt("how far do you want to go?", 10);
+    var track = prompt("How far from the target are we?", 15);
     return track;
 }
 
@@ -53,7 +53,7 @@ function clear_all(){
 
 function restart() {
     if (activeGame === true){
-        var end = confirm("Winners never quit, and quitters never win. Are you sure you want to quit?")
+        var end = confirm("Winners never quit and quitters never win. Are you sure you want to leave the game?")
         if (end === true){
             activeGame = false;
             clear_all();
