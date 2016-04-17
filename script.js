@@ -56,7 +56,7 @@ function assignCellstoPlayers(player){
 }
 
 function numberOfPlayers(){
-    var game_players = prompt("Captain, how many torperdos do you want to fire? (Enter a number between 2 and 4", 2);
+    var game_players = prompt("Captain, how many torpedoes do you want to fire? (Enter a number between 2 and 4", 2);
     return game_players;
 }
 
