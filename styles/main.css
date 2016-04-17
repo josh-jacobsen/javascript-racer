@@ -1,4 +1,5 @@
 
+
 #main-container {
     display: flex; 
     flex-direction: column;
@@ -11,6 +12,7 @@
 
 #play-area {
   padding-top: 50px;
+  padding-bottom: 50px;
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -22,6 +24,7 @@
   right: 0;
   margin: 0;
   overflow: hidden;
+  //background-color: #00BFFF;
 }
 
 #table{
@@ -31,6 +34,7 @@
 
 #centered-content {
   align-self: center;
+  width: 100%;
 }
 
 #sub_img {
@@ -38,22 +42,31 @@
   width: 200px;
 }
 
+#ship {
+  height: 200px;
+  width: 200px;
+}
+
 #ship_img {
-   height: 200px;
-   width: 200px;
+  height: 200px;
+  width: 200px;
 }
 
-.cn {
-  display: flex;
-  justify-content: center;
+#impact {
+  height: 200px;
+  width: 200px;
+  background-image: url("../images/impact.gif");
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
 }
 
-.inner {
-  align-self: center;
-}
+
+
 
 .active {
-  background-color: orange;
+  background-image: url("../images/torpedo.png");
+  background-size: 30px 30px;
+  background-repeat: no-repeat; 
 }
 
 td {

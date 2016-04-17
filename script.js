@@ -43,7 +43,7 @@ function numberOfPlayers(){
 }
 
 function lengthOfTrack() {
-    var track = prompt("How far from the target are we?", 15);
+    var track = prompt("How far from the target are we?", 20);
     return track;
 }
 
