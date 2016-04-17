@@ -3,8 +3,17 @@
 // Declare Variables //
 
 var activeGame = false;
+var finishedGame = false;
+var missileImpact = document.getElementById("missile_impact");
 
 // Functions // 
+
+function callAlert() {
+
+    activeGame = false;
+    alert("game over");  
+    start_game();
+    }
 
 function findActive(player){
     var check = Boolean(player)
@@ -12,25 +21,22 @@ function findActive(player){
         var cells = document.getElementById(player).getElementsByTagName("td");
         for (i = 0; i < cells.length; i++){
             if (cells[i].className === "active" && cells[i].nextElementSibling !== null && activeGame === true){
-                console.log("Option 1");
                 cells[i].className = "";
                 cells[i].nextElementSibling.className = "active";
                 break;
             }
             else if (cells[i].className === "active" && cells[i].nextElementSibling === null && activeGame === true) {
+                var ship = document.getElementById("ship");
+                ship.style.backgroundImage="url('images/impact.gif')";
+                missileImpact.play();
                 activeGame = false;
-                console.log("option 2");
-                alert("game over");  
-                start_game();
+                finishedGame = true;
                 break;      
             }
             else {
                 //
             }
         }
-    }
-    else {
-        console.log("dammit");
     }
 }
 
@@ -43,7 +49,7 @@ function numberOfPlayers(){
 }
 
 function lengthOfTrack() {
-    var track = prompt("How far from the target are we?", 20);
+    var track = prompt("How far from the target are we?", 10);
     return track;
 }
 
@@ -60,10 +66,12 @@ function restart() {
             start_game();
         }
     }
+   else {
+    start_game();
+   }
 }
 
 function keyUsed(event) {
-    console.log(event.which);
     // key a 
     if (event.which === 65){
         findActive("stripPlayer:1");
@@ -160,6 +168,8 @@ function start_game() {
         clear_all();
 
         boardSetup();
+        var ship = document.getElementById("ship");
+        ship.style.backgroundImage="url('images/ship.jpg')";
 
         document.addEventListener("keyup", keyUsed);
 

@@ -37,19 +37,20 @@
   width: 100%;
 }
 
-#sub_img {
-  height: 200px;
-  width: 200px;
+#sub {
+  min-height: 200px;
+  min-width: 200px;
+  //background-image: url("../images/impact.gif");
+  background-image: url("../images/submarine.jpg");
+  background-size: 200px 200px; 
 }
 
 #ship {
-  height: 200px;
-  width: 200px;
-}
-
-#ship_img {
-  height: 200px;
-  width: 200px;
+  min-height: 200px;
+  min-width: 200px;
+  //background-image: url("../images/impact.gif");
+  background-image: url("../images/ship.jpg");
+  background-size: 200px 200px; 
 }
 
 #impact {
@@ -59,9 +60,6 @@
   background-size: 200px 200px;
   background-repeat: no-repeat;
 }
-
-
-
 
 .active {
   background-image: url("../images/torpedo.png");
