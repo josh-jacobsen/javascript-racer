@@ -184,7 +184,7 @@ function start_game() {
 
         boardSetup();
         var ship = document.getElementById("ship");
-        ship.style.backgroundImage="url('images/ship.jpg')";
+        ship.style.backgroundImage="url('images/ship-t.png')";
 
         var sub = document.getElementById("sub");
         sub.style.backgroundImage="url('images/submarine-t.png')";
