@@ -101,6 +101,17 @@ td {
   height: 35px;
 }
 
+// +++++++ Canvas ++++++++++ //
+
+#canvas {
+  //background-color: orange;
+}
+
+#canvas {
+  border: 1px solid black;
+  background-color: white;
+}
+
 
 
 
