@@ -103,15 +103,19 @@ td {
 
 // +++++++ Canvas ++++++++++ //
 
-#canvas {
+#beeCanvas {
   //background-color: orange;
 }
 
-#canvas {
+#beeCanvas {
   border: 1px solid black;
   background-color: white;
 }
 
+#ballCanvas {
+  border: 1px solid blue;
+  background-color: orange;
+}
 
 
 

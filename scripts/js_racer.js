@@ -200,15 +200,15 @@ function start_game() {
 
 // ++++++++++++++++ Canvas +++++++++++++++++++++++++++ //
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var beeCanvas = document.getElementById("beeCanvas");
+var beeCtx = beeCanvas.getContext("2d");
 
 var x = 100;
 var y = 100;
 
 
 setInterval (function() {
-    ctx.clearRect(0, 0, 300, 300);
+    beeCtx.clearRect(0, 0, 300, 300);
     //ctx.fillRect(position, 0, 20, 20)
 
     // position++;
@@ -220,31 +220,31 @@ setInterval (function() {
     x = update(x);
     y = update(y);
 
-    ctx.strokeRect(0, 0, 300, 300);
+    beeCtx.strokeRect(0, 0, 300, 300);
 }, 30);
 
 
-var circle = function (x, y, radius, fillCircle) {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+var BeeCircle = function (x, y, radius, fillCircle) {
+    beeCtx.beginPath();
+    beeCtx.arc(x, y, radius, 0, Math.PI * 2, false);
     if (fillCircle) {
-        ctx.fill();
+        beeCtx.fill();
     } else {
-        ctx.stroke();
+        beeCtx.stroke();
     }
 };
 
 var drawBee = function(x, y) {
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "Black";
-    ctx.fillStyle = "Gold";
+    beeCtx.lineWidth = 2;
+    beeCtx.strokeStyle = "Black";
+    beeCtx.fillStyle = "Gold";
 
-    circle(x, y, 8, true);
-    circle(x, y, 8, false);
-    circle(x-5, y-11, 5, false);
-    circle(x + 5, y -11, 5, false);
-    circle(x-2, y-1, 2, false);
-    circle(x+2, y-1, 2, false);
+    BeeCircle(x, y, 8, true);
+    BeeCircle(x, y, 8, false);
+    BeeCircle(x-5, y-11, 5, false);
+    BeeCircle(x + 5, y -11, 5, false);
+    BeeCircle(x-2, y-1, 2, false);
+    BeeCircle(x+2, y-1, 2, false);
 };
 
 var update = function(coordinate) {
@@ -262,3 +262,86 @@ var update = function(coordinate) {
     return coordinate;
 };
 
+// ++++++++++++++ Ball +++++++++++ //
+
+var ballsArray = [];
+
+var colors = ["Aqua", "Blue", "Brown", "Chartreuse", "Crimson", "DarkGreen",
+             "DeepPink", "Fuchsia", "Gold", "Indigo", "LightSeaGreen",
+             "Red", "SpringGreen"];
+
+function pickRandomColor() {
+    console.log(colors[Math.floor(Math.random() * 13)]);
+    return colors[Math.floor(Math.random() * 13)];
+}
+
+// Returns a random number between min (inclusive) and max (exclusive)
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+var Ball = function() {
+    this.x = ballCanvas.width / getRandomArbitrary(1, 5);
+    this.y = ballCanvas.height / getRandomArbitrary(1, 5);
+    this.xSpeed = getRandomArbitrary(-5, 5);
+    this.ySpeed = getRandomArbitrary(-5, 5);
+    this.color = pickRandomColor();
+};
+
+var ballCircle = function(x, y, radius, fillCircle, color) {
+    ballCtx.beginPath();
+    ballCtx.arc(x, y, radius, 0, Math.PI * 2, false);
+    if (fillCircle) {
+        ballCtx.fillStyle = color;
+        ballCtx.fill();
+    } else {
+        ballCtx.stroke();
+    }
+};
+
+Ball.prototype.draw = function() {
+    ballCircle(this.x, this.y, 3, true, this.color);
+};
+
+Ball.prototype.move = function() {
+    this.x += this.xSpeed;
+    this.y += this.ySpeed;
+};
+
+Ball.prototype.checkCollision = function () {
+    if (this.x < 0 || this.x > 297) {
+        this.xSpeed = -this.xSpeed;
+    }
+    if (this.y < 0 || this.y > 297) {
+        this.ySpeed = -this.ySpeed;
+    }
+};
+
+var ballCanvas = document.getElementById("ballCanvas");
+var ballCtx = ballCanvas.getContext("2d");
+
+
+while (ballsArray.length < 10) {
+    var ball = new Ball();
+    ballsArray.push(ball);
+}
+
+
+
+setInterval(function() {
+    ballCtx.clearRect(0, 0, 300, 300);
+    for (i = 0; i < ballsArray.length; i++) {
+        //console.log(ballsArray[i]);
+
+
+        ballsArray[i].draw();
+        ballsArray[i].move();
+        ballsArray[i].checkCollision();
+
+    }
+    ballCtx.strokeRect(0, 0, 300, 300);
+
+
+}, 30);
+
+console.log(ballsArray.length);
