@@ -117,5 +117,9 @@ td {
   background-color: orange;
 }
 
+#controlCanvas {
+  border: 1px solid red;
+  background-color: green;
+}
 
 

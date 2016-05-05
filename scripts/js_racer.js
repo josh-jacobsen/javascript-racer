@@ -271,7 +271,6 @@ var colors = ["Aqua", "Blue", "Brown", "Chartreuse", "Crimson", "DarkGreen",
              "Red", "SpringGreen"];
 
 function pickRandomColor() {
-    console.log(colors[Math.floor(Math.random() * 13)]);
     return colors[Math.floor(Math.random() * 13)];
 }
 
@@ -286,7 +285,7 @@ var Ball = function() {
     this.xSpeed = getRandomArbitrary(-5, 5);
     this.ySpeed = getRandomArbitrary(-5, 5);
     this.color = pickRandomColor();
-};
+}
 
 var ballCircle = function(x, y, radius, fillCircle, color) {
     ballCtx.beginPath();
@@ -326,8 +325,6 @@ while (ballsArray.length < 10) {
     ballsArray.push(ball);
 }
 
-
-
 setInterval(function() {
     ballCtx.clearRect(0, 0, 300, 300);
     for (i = 0; i < ballsArray.length; i++) {
@@ -344,4 +341,104 @@ setInterval(function() {
 
 }, 30);
 
-console.log(ballsArray.length);
+// ++++++++++++++++ control canvas ++++++++++++ //
+var controlCanvas = document.getElementById("controlCanvas");
+var controlCtx = controlCanvas.getContext("2d");
+
+var controlWidth = controlCanvas.width;
+var controlHeight = controlCanvas.height;
+
+//var Control_Ball = new ControlBall();
+
+var keyActions = {
+    32: "stop",
+    37: "left",
+    38: "up",
+    39: "right",
+    40: "down"
+};
+
+var controlCircle = function(x, y, radius, fillCircle) {
+    controlCtx.beginPath();
+    controlCtx.arc(x, y, radius, 0, Math.PI * 2, false);
+    if (fillCircle) {
+        controlCtx.fill();
+    } else {
+        controlCtx.stroke();
+    }
+};
+
+var ControlBall = function () {
+  this.x = controlWidth / 2;
+  this.y = controlHeight / 2;
+  this.xSpeed = 0;
+  this.ySpeed = 0;
+}
+
+var Ball_in_control = new ControlBall();
+
+ControlBall.prototype.move = function() {
+    this.x += this.xSpeed;
+    this.y += this.ySpeed;
+
+    if (this.x <0) {
+        this.x = controlWidth;
+    } else if (this.x > controlWidth) {
+        this.x = 0;
+    } else if (this.y < 0) {
+        this.y = controlHeight;
+    } else if (this.y > controlHeight) {
+        this.y = 0;
+    }
+};
+
+ControlBall.prototype.draw = function() {
+    controlCircle(this.x, this.y, 10, true);
+};
+
+ControlBall.prototype.setDirection = function(direction) {
+    if (direction === "up") {
+        this.xSpeed = 0;
+        this.ySpeed = -5;
+    } else if (direction === "down") {
+        this.xSpeed = 0;
+        this.ySpeed = 5;
+    } else if (direction === "left") {
+        this.xSpeed = -5;
+        this.ySpeed = 0;
+    } else if (direction === "right") {
+        this.xSpeed = 5;
+        this.ySpeed = 0;
+    } else if (direction === "stop") {
+        this.xSpeed = 0;
+        this.ySpeed = 0;
+    }
+};
+
+setInterval(function() {
+    controlCtx.clearRect(0, 0, controlWidth, controlHeight);
+    //for (i = 0; i < ballsArray.length; i++) {
+        //console.log(ballsArray[i]);
+
+    Ball_in_control.draw();
+    Ball_in_control.move();
+    //Ball.checkCollision();
+
+
+    controlCtx.strokeRect(0, 0, 300, 300);
+}, 30);
+
+document.addEventListener("keyup", function(event){
+    console.log(event.keyCode);
+    var direction = keyActions[event.keyCode];
+    Ball_in_control.setDirection(direction);
+});
+// );
+// });
+
+// controlCanvas.addEventListener("click", function(event) {
+//     console.log(event);
+//     var direction = keyActions[event.keyCode];
+//     Ball_in_control.setDirection(direction);
+//     }
+// );
