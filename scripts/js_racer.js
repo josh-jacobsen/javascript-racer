@@ -10,7 +10,7 @@ window.onload = function() {
     submarine_img.src = "images/submarine-t.png";
 
     var keyActions = {
-        32: "stop",
+        32: "fire",
         37: "left",
         38: "up",
         39: "right",
@@ -23,16 +23,6 @@ window.onload = function() {
         submarine.setDirection(direction);
     });
 
-    var subCircle = function(x, y, radius, fillCircle) {
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-        if (fillCircle) {
-            ctx.fill();
-        } else {
-            ctx.stroke();
-        }
-    };
-
     var Sub = function() {
         this.x = (width - 100) / 2;
         this.y = (height - 100) / 2;
@@ -40,50 +30,54 @@ window.onload = function() {
         this.ySpeed = 0;
     }
 
-    Sub.prototype.move = function() {
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
+    // Sub.prototype.move = function() {
+    //     this.x += this.xSpeed;
+    //     this.y += this.ySpeed;
 
-        if (this.x <0) {
-            this.x = width;
-        } else if (this.x > width) {
-            this.x = 0;
-        } else if (this.y < 0) {
-            this.y = height;
-        } else if (this.y > height) {
-            this.y = 0;
-        }
-    };
+    //     if (this.x <0) {
+    //         this.x = width;
+    //     } else if (this.x > width) {
+    //         this.x = 0;
+    //     } else if (this.y < 0) {
+    //         this.y = height;
+    //     } else if (this.y > height) {
+    //         this.y = 0;
+    //     }
+    // };
 
     Sub.prototype.draw = function() {
         ctx.drawImage(submarine_img, this.x, this.y, 100, 100);
-        //subCircle(this.x, this.y, 20, true);
-           // context.drawImage(img, 0, 0);
-
     };
-
-
-
-
 
     Sub.prototype.setDirection = function(direction) {
         if (direction === "up") {
-            this.x += 0;
-            this.y += -5;
+            this.y -= 5;
+            if (this.y < (0 - (0.1*height))) {
+                this.y = (height);
+            }
         } else if (direction === "down") {
-            this.x += 0;
             this.y += 5;
+            if (this.y > (height)) {
+                this.y = (0 - (0.1*height));
+            }
         } else if (direction === "left") {
             this.x += -5;
             this.y += 0;
         } else if (direction === "right") {
             this.x += 5;
             this.y += 0;
-        } else if (direction === "stop") {
-            this.x += 0;
-            this.y += 0;
+        } else if (direction === "fire") {
+            var torpedo = new Torpedo;
         }
     };
+
+    var Torpedo = function(submarine){
+        this.x = submarine.x;
+        this.y = submarine.y;
+        this.xSpeed = 2;
+        this.ySpeed = 0;
+    }
+
 
 
 
@@ -93,7 +87,7 @@ window.onload = function() {
         ctx.clearRect(0, 0, width, height);
 
         submarine.draw();
-        submarine.move();
+        //submarine.move();
 
         ctx.strokeRect(0, 0, width, height);
     }, 30);
