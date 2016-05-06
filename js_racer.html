@@ -15,7 +15,7 @@
 
     <h1 class="center">Submarine Captain</h1>
 
-    <h3 class="center">Use the left home keys (a, s, d, f) to control the torpedoes</h3>
+    <h3 class="center">Use the arrow keys to move and spacebar to fire a torpedo</h3>
 
 
     <div id="button-div">
@@ -23,8 +23,13 @@
       <button id="restart" type="button" onclick="restart()">Restart</button>
     </div>
 
-    <div id="play-area">
+    <div id="canvasContainer">
 
+      <canvas id="subCanvas" width="500" height="500"></canvas>
+
+    </div><!-- end of canvas container -->
+
+<!--     <div id="play-area">
       <div id="sub">
       </div>
 
@@ -37,10 +42,10 @@
       <div id="ship">
       </div>
 
-    </div><!-- end of play area -->
+    </div> -->
 
   </div><!-- end of main container -->
-  <div id="canvasContainer">
+<!--   <div id="canvasContainer">
 
     <canvas id="beeCanvas" width="200" height="200"></canvas>
 
@@ -48,7 +53,7 @@
 
     <canvas id="controlCanvas" width="200" height="200"></canvas>
 
-  </div><!-- end of canvas container -->
+  </div> -->
 
   <audio id="missile_impact" src="sounds/missile_impact.mp3" type="audio/mpeg"></audio>
 

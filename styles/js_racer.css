@@ -103,23 +103,37 @@ td {
 
 // +++++++ Canvas ++++++++++ //
 
-#beeCanvas {
-  //background-color: orange;
-}
+// #canvasContainer {
+//   border: 1px solid red;
+// }
 
-#beeCanvas {
+#subCanvas {
   border: 1px solid black;
-  background-color: white;
+  //background-color: red;
 }
 
-#ballCanvas {
-  border: 1px solid blue;
-  background-color: orange;
-}
-
-#controlCanvas {
+img {
   border: 1px solid red;
-  background-color: green;
 }
+
+
+// #beeCanvas {
+//   //background-color: orange;
+// }
+
+// #beeCanvas {
+//   border: 1px solid black;
+//   background-color: white;
+// }
+
+// #ballCanvas {
+//   border: 1px solid blue;
+//   background-color: orange;
+// }
+
+// #controlCanvas {
+//   border: 1px solid red;
+//   background-color: green;
+// }
 
 
